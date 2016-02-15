@@ -26,6 +26,7 @@ The following **additional** features are implemented:
     - Added Phone number and snippets to detail page
     - Changed Latitude and longitude data to surrounding area
     - Changed term from "Thai" to just genereal "food"
+    - Added loading animation to infinite scroll view
     
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
@@ -36,7 +37,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/EtE7fDC.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/vTgLaSG.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

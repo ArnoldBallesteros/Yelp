@@ -25,8 +25,10 @@ class BusinessesViewController: UIViewController,UISearchBarDelegate, UITableVie
 
     var term = "place"
     var isMoreDataLoading = false
+    var loadingMoreView:InfiniteScrollActivityView?
     //Grab offset data from Yelp Client. Extracted info from offset parameter
     var offset : Int? = 20
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,10 +62,16 @@ class BusinessesViewController: UIViewController,UISearchBarDelegate, UITableVie
         navigationItem.titleView = searchBar
         print("Reach Search")
         
+        // Set up Infinite Scroll loading indicator
+        let frame = CGRectMake(0, tableView.contentSize.height, tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight)
+        loadingMoreView = InfiniteScrollActivityView(frame: frame)
+        loadingMoreView!.hidden = true
+        tableView.addSubview(loadingMoreView!)
         
-        
-        
-
+        var insets = tableView.contentInset;
+        insets.bottom += InfiniteScrollActivityView.defaultHeight;
+        tableView.contentInset = insets
+    }
 /* Example of Yelp search with more search options specified
         Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
@@ -74,27 +82,6 @@ class BusinessesViewController: UIViewController,UISearchBarDelegate, UITableVie
             }
         }
 */
-    }
-    
-//ALTERNATE SEARCH CODE
-/*   func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        print("Searching")
-        if searchText.isEmpty {
-            filteredData = businesses
-        } else {
-            filteredData = businesses!.filter({(business: Business) -> Bool in
-                if (business.name)!.rangeOfString(searchText, options: .CaseInsensitiveSearch) != nil {
-                    return true
-                } else {
-                    return false
-                }
-            })
-        }
-        tableView.reloadData()
-        print("Reloading")
-    }
-*/
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -113,33 +100,46 @@ class BusinessesViewController: UIViewController,UISearchBarDelegate, UITableVie
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
         if (!isMoreDataLoading) {
+            //Calculate the positions of one screen length before the bottom of the results
             let scrollViewContentHeight = tableView.contentSize.height
             let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+            
+            //When the user has scorlled past the threshold, start requesting
             if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.dragging) {
                 isMoreDataLoading = true
+                
+                //Update position of loadingMoreView, and start loading indicator
+                let frame = CGRectMake(0, tableView.contentSize.height, tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight)
+                loadingMoreView?.frame = frame
+                loadingMoreView!.startAnimating()
+                
+                //Call function to load more results
                 loadMoreData()
             }
         }
-      //  loadMoreData()
-            
-        
     }
     
     //load more data
     func loadMoreData() {
+        //Don't have configure session,just call it from the Business View
         //Added parameters to the class function to include the offset within the tableView
-        Business.searchWithTerm("\(term)", sort: .Distance, categories: [], deals: true, offset: 1, completion: { (businesses: [Business]!, error: NSError!) -> Void in
+        Business.searchWithTerm("\(term)", sort: .Distance, categories: [], deals: true, offset: self.offset, completion: { (businesses: [Business]!, error: NSError!) -> Void in
             if (businesses != []) {
-                print("Appending")
                 //This conditional states that if the businesses does not equal to the array,
                 //correct it by appending the other businesses
                 for business in businesses {
+                    print("Appending")
                     self.businesses.append(business)
                 }
+                //Update Flag
+                self.isMoreDataLoading = false
+                //Stop Loading Indicator
+                self.loadingMoreView!.stopAnimating()
+                
                 //Reload and extend the offset to introduce the new data
                 self.filteredData = self.businesses
                 self.tableView.reloadData()
-                self.offset! = self.offset! + 20
+                self.offset! += 10
             }
             self.isMoreDataLoading = false
         })

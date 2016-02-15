@@ -83,6 +83,7 @@ class Business: NSObject {
         
         reviewCount = dictionary["review_count"] as? NSNumber
         
+        //Create a value for the offset
         self.offset = 20
     }
     
@@ -99,7 +100,7 @@ class Business: NSObject {
     class func searchWithTerm(term: String, completion: ([Business]!, NSError!) -> Void) {
         YelpClient.sharedInstance.searchWithTerm(term, completion: completion)
     }
-    
+    //include offset to be called into businessesViewController
     class func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, offset: Int?, completion: ([Business]!, NSError!) -> Void) -> Void {
         //Add offset to call in business type
         YelpClient.sharedInstance.searchWithTerm(term, sort: sort, categories: categories, deals: deals, offset: offset, completion: completion)

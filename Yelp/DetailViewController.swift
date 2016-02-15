@@ -10,7 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    //PosterVIew is low res,
+    //PosterView is low res,
     //thought it would be of higher res to enlarge on detail
     //view controller
     @IBOutlet weak var posterView: UIImageView!
@@ -40,10 +40,6 @@ class DetailViewController: UIViewController {
         phoneLabel.text = business.phone
         snippetLabel.text = business.snippet
         
-        
-        
-        
-
         // Do any additional setup after loading the view.
     }
 

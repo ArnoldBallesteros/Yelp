@@ -75,7 +75,7 @@ class YelpClient: BDBOAuth1RequestOperationManager {
         if deals != nil {
             parameters["deals_filter"] = deals!
         }
-        
+        //Add offset parameters for infinite scroll
         if offset != nil && offset > 0 {
             parameters["offset"] = offset!
         }

@@ -192,15 +192,6 @@
                                         <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SnippetSnippetSnippetSnippetSnippetSnippetSnippetSnippetSnippetSnippetSnippetSnippetSnippetSnippet" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIX-Bo-bMd">
-                                        <rect key="frame" x="20" y="190" width="280" height="105"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="280" id="2i0-hh-3D9"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jfg-hX-fT6">
                                         <rect key="frame" x="128" y="303" width="65" height="65"/>
                                         <constraints>
@@ -210,6 +201,15 @@
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="65" id="ibP-G2-iZi"/>
                                         </constraints>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SnippetSnippetSnippetSnippetSnippetSnippetSnippetSnippetSnippetSnippetSnippetSnippetSnippetSnippet" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIX-Bo-bMd">
+                                        <rect key="frame" x="20" y="190" width="280" height="105"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="280" id="2i0-hh-3D9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
